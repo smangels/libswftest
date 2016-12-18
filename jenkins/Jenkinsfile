@@ -1,0 +1,20 @@
+node { // <1>
+
+    stage('Build') { // <2>
+        checkout scm // everything starts with beautiful source code
+        sh 'rm -rf build'   // just to ensure that subsequent build step will fail
+        try {
+            sh 'mkdir build && cd build && cmake .. && cmake --build .'
+        }
+        finally {
+            echo "Finishing build step"
+        }
+    }
+    stage('Test') {
+        sh 'ls build/src/libswftest.a'  // check whether library exists
+
+    }
+    stage('Deploy') {
+        /* .. snip .. */
+    }
+}
