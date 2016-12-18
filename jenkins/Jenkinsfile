@@ -1,8 +1,6 @@
 node { // <1>
     checkout scm // everything starts with beautiful source code
 
-    def server = Artifactory.server MY-ID
-
     stage('Build') { // <2>
         sh 'rm -rf build'
         sh 'mkdir build && cd build && cmake .. && cmake --build .'
