@@ -6,7 +6,6 @@ node { // <1>
     stage('Build') { // <2>
         sh 'rm -rf build'
         sh 'mkdir build && cd build && cmake .. && cmake --build .'
-        echo "finalized build stage"
     }
     stage('Test') {
         sh 'ls build/src/libswftest.a'  // check whether library exists
