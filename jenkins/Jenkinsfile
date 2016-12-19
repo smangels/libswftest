@@ -21,12 +21,11 @@ node { // <1>
         // upload artifacts to Artifactory using ID:"swf1"
         def buildInfoUpload = server.upload spec:uploadSpec
 
+        // set current software revision as environment variable for the node
+        env.SW_REVISION = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+
         // collect environment variables
         buildInfoUpload.env.collect()
-
-        def gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
-
-        buildInfoUpload.env.vars['SW_REVISION'] = gitCommit
 
         // enable build retention, the library is just for test purposes
         buildInfoUpload.retention maxBuilds: 3
