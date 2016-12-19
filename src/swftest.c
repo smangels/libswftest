@@ -5,10 +5,12 @@
 #define SWFTEST_LIB_NAME "swftest"
 
 unsigned int SWFTEST_INITIATED = 0;
+unsigned int SWFTEST_RECVD_ID=0;
 
-unsigned int swftest_init(void)
+unsigned int swftest_init(unsigned int id)
 {
 	SWFTEST_INITIATED++;
+	SWFTEST_RECVD_ID=id;
 	fprintf(stdout, "%s initiated\n", SWFTEST_LIB_NAME);
 	return SWFTEST_INITIATED;
 }
@@ -23,7 +25,7 @@ void swftest_version(void)
 unsigned int swftest_shutdown(void)
 {
 	SWFTEST_INITIATED=0;
-	fprintf(stdout, "%s shutdown\n", SWFTEST_LIB_NAME);
+	fprintf(stdout, "%s shutdown, id: %3d\n", SWFTEST_LIB_NAME, SWFTEST_RECVD_ID);
 	return SWFTEST_INITIATED;
 }
 
