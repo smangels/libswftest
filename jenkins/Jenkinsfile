@@ -23,6 +23,7 @@ node { // <1>
 
         // set current software revision as environment variable for the node
         env.SW_REVISION = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+        env.SW_FETCH_URL = sh(returnStdout: true, script: 'git remote show origin | grep "Fetch URL" | sed -e "s/.*: \(.*\)$/\1/g"').trim()
 
         // collect environment variables
         buildInfoUpload.env.collect()
