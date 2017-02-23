@@ -26,7 +26,7 @@ node { // <1>
         // env.SW_FETCH_URL = sh(returnStdout: true, script: 'git remote show origin | grep "Fetch URL" | sed -e "s/.*: \(.*\)$/\1/g"').trim()
 
         // collect environment variables
-        buildInfoUpload.env.collect()
+        // buildInfoUpload.env.collect()
 
         // enable build retention, the library is just for test purposes
         buildInfoUpload.retention maxBuilds: 3
